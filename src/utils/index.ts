@@ -115,7 +115,7 @@ export const generateHeaderTemplate = (config: IConfig, filePath: string) => {
   }
 
   // Add footer comment
-  result += `${format.endWith}\n`;
+  result += ` ${format.endWith}\n`;
 
   return result;
 };
