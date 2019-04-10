@@ -1,4 +1,12 @@
 /**
+ * @ Author: Daniel Lin
+ * @ Create Time: 2019-04-09 16:27:38
+ * @ Modified by: Daniel Lin
+ * @ Modified time: 2019-04-10 16:04:51
+ * @ Description:
+ */
+
+/**
  * 默认配置项
  */
 const defaultConfig = {

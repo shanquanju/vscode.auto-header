@@ -1,3 +1,11 @@
+/**
+ * @ Author: Daniel Lin
+ * @ Create Time: 2019-04-09 17:13:08
+ * @ Modified by: Daniel Lin
+ * @ Modified time: 2019-04-10 16:07:58
+ * @ Description:
+ */
+
 import * as fs from 'fs';
 import * as moment from 'moment';
 import * as path from 'path';
@@ -87,7 +95,11 @@ export const generateHeaderTemplate = (config: IConfig, filePath: string) => {
     if (header.hasOwnProperty(key)) {
       const element = header[key];
       if (typeof element === 'string') {
-        result += ` ${format.middleWith} ${format.headerPrefix} ${key}: ${element}\n`;
+        let value = ` ${element}`;
+        if (!element) {
+          value = ``;
+        }
+        result += ` ${format.middleWith} ${format.headerPrefix} ${key}:${value}\n`;
         continue;
       }
 
@@ -115,7 +127,7 @@ export const generateHeaderTemplate = (config: IConfig, filePath: string) => {
   }
 
   // Add footer comment
-  result += ` ${format.endWith}\n`;
+  result += ` ${format.endWith}\n\n`;
 
   return result;
 };

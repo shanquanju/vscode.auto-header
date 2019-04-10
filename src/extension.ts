@@ -1,3 +1,11 @@
+/**
+ * @ Author: Daniel Lin
+ * @ Create Time: 2019-04-08 17:21:36
+ * @ Modified by: Daniel Lin
+ * @ Modified time: 2019-04-10 16:08:06
+ * @ Description:
+ */
+
 import { commands, ExtensionContext } from 'vscode';
 
 import commandList from './commands/commands';

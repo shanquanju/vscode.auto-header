@@ -1,3 +1,11 @@
+/**
+ * @ Author: Daniel Lin
+ * @ Create Time: 2019-04-10 09:35:10
+ * @ Modified by: Daniel Lin
+ * @ Modified time: 2019-04-10 16:05:31
+ * @ Description:
+ */
+
 import { Position, Range, TextDocument, TextEditorEdit, window, workspace } from 'vscode';
 
 import defaultConfig from '../../config/default.config';
