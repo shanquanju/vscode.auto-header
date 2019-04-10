@@ -1,0 +1,10 @@
+out
+node_modules
+.vscode-test/
+.idea/
+.DS_Store
+*.swp
+*.lock
+*.yml
+*.log
+*.vsix

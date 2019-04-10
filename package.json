@@ -1,0 +1,78 @@
+{
+  "name": "auto-header",
+  "displayName": "auto-header",
+  "description": "",
+  "version": "1.0.0",
+  "publisher": "Daniel",
+  "author": "Daniel Lin",
+  "license": "MIT",
+  "private": true,
+  "main": "./out/extension",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shanquanju/vscode.auto-header.git"
+  },
+  "scripts": {
+    "build": "vsce package",
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "dependencies": {
+    "moment": "^2.24.0",
+    "path": "^0.12.7",
+    "vscode": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^2.2.42",
+    "@types/node": "^8.10.25",
+    "fs": "^0.0.1-security",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1"
+  },
+  "engines": {
+    "vscode": "^1.1.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "vscode",
+    "auto-header",
+    "comments"
+  ],
+  "activationEvents": [
+    "*",
+    "onCommand:extension.autoHeader"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Auto header Configuration",
+      "properties": {
+        "autoHeader": {
+          "type": "object",
+          "default": {},
+          "description": ""
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "extension.autoHeader",
+        "title": "Auto Header"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.autoHeader",
+        "key": "ctrl+alt+i",
+        "mac": "ctrl+cmd+i",
+        "when": "editorTextFocus"
+      }
+    ]
+  }
+}
