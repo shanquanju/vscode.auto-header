@@ -3,6 +3,7 @@
   "displayName": "auto-header",
   "description": "This extension allows quickly add file header in the active text editor. And also allows to update the modify time and modifier automatic in the file header comments.",
   "version": "1.0.1",
+  "icon": "images/icon.png",
   "publisher": "DanielLin",
   "author": "Daniel Lin",
   "license": "MIT",
