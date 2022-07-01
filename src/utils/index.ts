@@ -28,7 +28,7 @@ const getFormat = (extname: string, format: any) => {
     case FileType.Vue:
       result = {
         startWith: '<!--',
-        middleWith: '*',
+        middleWith: ' *',
         endWith: '-->',
         headerPrefix: '@',
       };
@@ -36,7 +36,7 @@ const getFormat = (extname: string, format: any) => {
     case FileType.Python:
       result = {
         startWith: `'''`,
-        middleWith: '#',
+        middleWith: ' #',
         endWith: `'''`,
         headerPrefix: '@',
       };
@@ -45,11 +45,19 @@ const getFormat = (extname: string, format: any) => {
     case FileType.Typescript:
       result = {
         startWith: `/**`,
-        middleWith: '*',
+        middleWith: ' *',
         endWith: `*/`,
         headerPrefix: '@',
       };
       break;
+    case FileType.Matlab:
+      result = {
+        startWith: `%`,
+        middleWith: '%',
+        endWith: `%`,
+        headerPrefix: '@',
+      };
+        break;
     default:
       break;
   }
@@ -99,7 +107,7 @@ export const generateHeaderTemplate = (config: IConfig, filePath: string) => {
         if (!element) {
           value = ``;
         }
-        result += ` ${format.middleWith} ${format.headerPrefix} ${key}:${value}\n`;
+        result += `${format.middleWith} ${format.headerPrefix} ${key}:${value}\n`;
         continue;
       }
 
