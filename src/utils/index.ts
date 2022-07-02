@@ -52,9 +52,9 @@ const getFormat = (extname: string, format: any) => {
       break;
     case FileType.Matlab:
       result = {
-        startWith: `%`,
-        middleWith: '%',
-        endWith: `%`,
+        startWith: `%  `,
+        middleWith: '%  ',
+        endWith: `%  `,
         headerPrefix: '@',
       };
         break;
