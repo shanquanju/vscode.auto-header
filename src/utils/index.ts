@@ -1,8 +1,8 @@
 /**
  * @ Author: Daniel Lin
  * @ Create Time: 2019-04-09 17:13:08
- * @ Modified by: Daniel Lin
- * @ Modified time: 2019-04-10 16:07:58
+ * @ Modified by: Ziyi Cao
+ * @ Modified time: 2022-07-02 11:10:22
  * @ Description:
  */
 
@@ -117,15 +117,15 @@ export const generateHeaderTemplate = (config: IConfig, filePath: string) => {
           case ItemType.CreateTime:
             timeFormat = element.format || 'YYYY-MM-DD HH:mm:ss';
             const createTime = moment(fileCreateTime).format(timeFormat);
-            result += ` ${format.middleWith} ${format.headerPrefix} ${key}: ${createTime}\n`;
+            result += `${format.middleWith} ${format.headerPrefix} ${key}: ${createTime}\n`;
             break;
           case ItemType.ModifyTime:
             timeFormat = element.format || 'YYYY-MM-DD HH:mm:ss';
             const modifyTime = moment().format(timeFormat);
-            result += ` ${format.middleWith} ${format.headerPrefix} ${key}: ${modifyTime}\n`;
+            result += `${format.middleWith} ${format.headerPrefix} ${key}: ${modifyTime}\n`;
             break;
           case ItemType.Modifier:
-            result += ` ${format.middleWith} ${format.headerPrefix} ${key}: ${element.value}\n`;
+            result += `${format.middleWith} ${format.headerPrefix} ${key}: ${element.value}\n`;
             break;
           default:
             break;
@@ -135,7 +135,7 @@ export const generateHeaderTemplate = (config: IConfig, filePath: string) => {
   }
 
   // Add footer comment
-  result += ` ${format.endWith}\n\n`;
+  result += `${format.endWith}\n\n`;
 
   return result;
 };
