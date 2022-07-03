@@ -28,7 +28,7 @@ const getFormat = (extname: string, format: any) => {
     case FileType.Vue:
       result = {
         startWith: '<!--',
-        middleWith: ' *',
+        middleWith: '*',
         endWith: '-->',
         headerPrefix: '@',
       };
@@ -36,7 +36,7 @@ const getFormat = (extname: string, format: any) => {
     case FileType.Python:
       result = {
         startWith: `'''`,
-        middleWith: ' #',
+        middleWith: '#',
         endWith: `'''`,
         headerPrefix: '@',
       };
@@ -45,16 +45,16 @@ const getFormat = (extname: string, format: any) => {
     case FileType.Typescript:
       result = {
         startWith: `/**`,
-        middleWith: ' *',
+        middleWith: '*',
         endWith: `*/`,
         headerPrefix: '@',
       };
       break;
     case FileType.Matlab:
       result = {
-        startWith: `%  `,
-        middleWith: '%  ',
-        endWith: `%  `,
+        startWith: `%`,
+        middleWith: '%',
+        endWith: `%`,
         headerPrefix: '@',
       };
         break;
@@ -150,10 +150,12 @@ export const getModify = (config: IConfig, filePath: string) => {
     modifyTime: {
       key: '',
       value: '',
+      matchPrefix: '',
     },
     modifier: {
       key: '',
       value: '',
+      matchPrefix: ''
     },
   };
 
@@ -175,13 +177,15 @@ export const getModify = (config: IConfig, filePath: string) => {
             const modifyTime = moment().format(timeFormat);
             result.modifyTime = {
               key,
-              value: ` ${format.middleWith} ${format.headerPrefix} ${key}: ${modifyTime}`,
+              value: `${format.middleWith} ${format.headerPrefix} ${key}: ${modifyTime}`,
+              matchPrefix: `${format.middleWith} ${format.headerPrefix} ${key}:`,
             };
             break;
           case ItemType.Modifier:
             result.modifier = {
               key,
-              value: ` ${format.middleWith} ${format.headerPrefix} ${key}: ${element.value}`,
+              value: `${format.middleWith} ${format.headerPrefix} ${key}: ${element.value}`,
+              matchPrefix: `${format.middleWith} ${format.headerPrefix} ${key}:`,
             };
             break;
           default:
