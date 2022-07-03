@@ -6,10 +6,12 @@
  * @ Description:
  */
 
-import { Position, Range, TextDocument, TextEditorEdit, window, workspace } from 'vscode';
+import { Position, Range, TextDocument, TextEditorEdit, window, workspace, FileCreateEvent, Uri } from 'vscode';
+import { writeFile } from 'fs';
 
 import defaultConfig from '../../config/default.config';
 import { checkLineStartsWith, getConfigOptionCount, getModify } from '../../utils/index';
+import { generateHeaderTemplate } from '../../utils/index';
 
 // Last save time
 let lastSaveTime = 0;
@@ -90,3 +92,24 @@ export const onDidSaveTextDocument = (document: TextDocument) => {
     document.save();
   }, 200);
 };
+
+
+/**
+ *  Extension file create event
+ */
+export const onDidCreateFiles = (files: FileCreateEvent) => {
+  const createdFiles = files.files; 
+  createdFiles.forEach((e: Uri) => {
+    const filePath = e.fsPath
+    const autoHeaderConfig = workspace.getConfiguration('autoHeader');
+    const format = (autoHeaderConfig && autoHeaderConfig.format) || defaultConfig.format;
+    const header = (autoHeaderConfig && autoHeaderConfig.header) || defaultConfig.header;
+  
+    const headerTemplate = generateHeaderTemplate({format, header}, filePath);
+
+    // Insert Header
+    writeFile(filePath, headerTemplate, (err)=>{
+        console.error(err)
+    })
+  })
+}
