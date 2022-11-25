@@ -8,7 +8,7 @@
 
 import { workspace } from 'vscode';
 
-import { onDidSaveTextDocument } from './workspace/index';
+import { onDidSaveTextDocument, onDidCreateFiles } from './workspace/index';
 
 /**
  * Handle events
@@ -16,6 +16,7 @@ import { onDidSaveTextDocument } from './workspace/index';
 const handleEvents = () => {
   // Handle workspace events
   workspace.onDidSaveTextDocument(onDidSaveTextDocument);
+  workspace.onDidCreateFiles(onDidCreateFiles);
 };
 
 export default handleEvents;
