@@ -26,7 +26,7 @@ And also allows **update the modify time and modifier automatic** in the file he
 "autoHeader": {
     "format": {
         "startWith": "/**",
-        "middleWith": "*",
+        "middleWith": " *",
         "endWith": "*/",
         "headerPrefix": "@",
     },
@@ -59,7 +59,7 @@ And also allows **update the modify time and modifier automatic** in the file he
 "autoHeader": {
     "format": {
         "startWith": "/**",
-        "middleWith": "*",
+        "middleWith": " *",
         "endWith": "*/",
         "headerPrefix": "@",
     },

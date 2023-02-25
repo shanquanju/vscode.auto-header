@@ -23,7 +23,7 @@ const autoHeader = () => {
 
   // Selected activated file the very first time the command is executed
   const activeTextEditor = window.activeTextEditor;
-
+  
   activeTextEditor.edit((editBuilder: TextEditorEdit) => {
     try {
       const filePath = activeTextEditor.document.fileName;

@@ -6,10 +6,12 @@
  * @ Description:
  */
 
-import { Position, Range, TextDocument, TextEditorEdit, window, workspace } from 'vscode';
+import { Position, Range, TextDocument, TextEditorEdit, window, workspace, FileCreateEvent, Uri } from 'vscode';
+import { writeFile } from 'fs';
 
 import defaultConfig from '../../config/default.config';
 import { checkLineStartsWith, getConfigOptionCount, getModify } from '../../utils/index';
+import { generateHeaderTemplate } from '../../utils/index';
 
 // Last save time
 let lastSaveTime = 0;
@@ -49,8 +51,8 @@ export const onDidSaveTextDocument = (document: TextDocument) => {
 
   let mofidyTimeRange = new Range(new Position(0, 0), new Position(0, 0));
   let modifierRange = new Range(new Position(0, 0), new Position(0, 0));
-  const modifyTimeStartsWith = ` ${format.middleWith} ${format.headerPrefix} ${modifyTime.key}:`;
-  const modifierStartsWith = ` ${format.middleWith} ${format.headerPrefix} ${modifier.key}:`;
+  const modifyTimeStartsWith =  modifyEntity.modifyTime.matchPrefix//` ${format.middleWith} ${format.headerPrefix} ${modifyTime.key}:`;
+  const modifierStartsWith = modifyEntity.modifier.matchPrefix //` ${format.middleWith} ${format.headerPrefix} ${modifier.key}:`;
   for (let index = 0; index < length; index++) {
     // Get line text
     const linetAt = document.lineAt(index);
@@ -90,3 +92,24 @@ export const onDidSaveTextDocument = (document: TextDocument) => {
     document.save();
   }, 200);
 };
+
+
+/**
+ *  Extension file create event
+ */
+export const onDidCreateFiles = (files: FileCreateEvent) => {
+  const createdFiles = files.files; 
+  createdFiles.forEach((e: Uri) => {
+    const filePath = e.fsPath
+    const autoHeaderConfig = workspace.getConfiguration('autoHeader');
+    const format = (autoHeaderConfig && autoHeaderConfig.format) || defaultConfig.format;
+    const header = (autoHeaderConfig && autoHeaderConfig.header) || defaultConfig.header;
+  
+    const headerTemplate = generateHeaderTemplate({format, header}, filePath);
+
+    // Insert Header
+    writeFile(filePath, headerTemplate, (err)=>{
+        console.error(err)
+    })
+  })
+}
